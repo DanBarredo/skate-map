@@ -27,4 +27,7 @@ dev-dependencies = [
     "httpx>=0.28.0",
     "pytest-cov>=5.3.1",
     "pytest-mock>=3.11.1",
+    "black>=24.1.0",                   # Code formatting
+    "ruff>=0.2.0",                     # Linting (faster than flake8)
+    "mypy>=1.8.0",                     # Type checking
 ]
