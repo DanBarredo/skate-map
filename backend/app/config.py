@@ -81,4 +81,5 @@ def get_settings() -> Settings:
         settings = get_settings()
         print(settings.database_url)
     """
+    print("Loading settings from environment variables...")
     return Settings()
