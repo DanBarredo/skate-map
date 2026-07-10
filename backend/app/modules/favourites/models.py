@@ -6,8 +6,10 @@ if TYPE_CHECKING:
     from app.modules.users.models import User
     from app.modules.spots.models import Spot
 
-class Favourite(SQLModel, table=True, table_name="favourites"):
+class Favourite(SQLModel, table=True):
     """Database Table for User Favourites"""
+    __tablename__: str = "favourites" # type: ignore
+
     id: int = Field(default=None, primary_key=True)
     user_id: int = Field(default=None, foreign_key="users.id")
     spot_id: int = Field(default=None, foreign_key="spots.id")
@@ -16,6 +18,5 @@ class Favourite(SQLModel, table=True, table_name="favourites"):
     )
 
     # Relationships
-    # TODO: link to User and Spot models
     user: Optional["User"] = Relationship(back_populates="favourites")
     spot: Optional["Spot"] = Relationship()

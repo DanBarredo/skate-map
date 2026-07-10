@@ -1,8 +1,10 @@
 from sqlmodel import SQLModel, Field
 import datetime
 
-class Spot(SQLModel, table=True, table_name="spots"):
+class Spot(SQLModel, table=True):
     """Database Table for Skate Spots"""
+    __tablename__: str = "spots" # type: ignore
+
     id: int = Field(default=None, primary_key=True)
     name: str = Field(default=None, unique=True)
     description: str | None = Field(default=None)

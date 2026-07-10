@@ -4,9 +4,9 @@ from sqlmodel import SQLModel, create_engine, Session
 from app.config import get_settings
 
 # import module models here
-from app.modules.users.models import User # noqa: F401
 from app.modules.spots.models import Spot # noqa: F401
 from app.modules.favourites.models import Favourite # noqa: F401
+from app.modules.users.models import User # noqa: F401
 
 settings = get_settings()
 

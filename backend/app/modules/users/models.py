@@ -6,8 +6,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from app.modules.favourites.models import Favourite
 
-class User(SQLModel, table=True, table_name="users"):
+class User(SQLModel, table=True):
     """Database Table for Users"""
+    __tablename__: str = "users" # type: ignore
+
     id: int = Field(default=None, primary_key=True)
     username: str = Field(unique=True)
     email: EmailStr = Field(unique=True, index=True)
