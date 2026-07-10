@@ -1,7 +1,7 @@
 services:
-  db:
+  database:
     container_name: skate-map-db
-    image: postgres:15
+    image: postgis/postgis:15-3.3
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
@@ -9,10 +9,15 @@ services:
       PGDATA: /var/lib/postgresql/data
     ports: 
       - "5432:5432"
-
     volumes:
       - skate_map_data:/var/lib/postgresql/data
+    networks:
+      - skate-map-network
 
 volumes:
   skate_map_data:
     driver: local
+
+networks:
+  skate-map-network:
+    driver: bridge

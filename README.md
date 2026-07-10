@@ -34,8 +34,12 @@ uv lock
 uv sync
 ```
 
+3. Run Docker compose to create postgres DB container.
+```sh
+docker compose up -d
+```
 
-3. Boot up your FastAPI development server using uv's fast execution layer
+4. Boot up your FastAPI development server using uv's fast execution layer
 ```sh
 uv run uvicorn app.main:app --reload
 ```

@@ -20,6 +20,10 @@ class Settings(BaseSettings):
     Example:
         DATABASE_URL=postgresql://... python app.py
     """
+    # Postgres Database Credentials
+    postgres_user: str = "postgres"
+    postgres_password: str = "postgres"
+    postgres_db: str = "skate_map"
 
     # Database Configuration
     database_url: str = "postgresql://user:password@localhost:5432/skate_map"
