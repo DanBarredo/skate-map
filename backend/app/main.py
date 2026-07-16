@@ -5,6 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
 from app.database import init_db
 
+from starlette.middleware.sessions import SessionMiddleware
+from starlette_admin.contrib.sqlmodel import Admin
+
+from app.admin.auth import SettingsAuthProvider
+from app.admin.views import register_admin_views
+from app.database import engine
+
+
 
 def create_app() -> FastAPI:
     settings = get_settings()
@@ -24,6 +32,22 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    app.add_middleware(
+        SessionMiddleware,
+        secret_key=settings.jwt_secret_key,
+        https_only=False,  # Set to True in production with HTTPS
+    )
+
+    # Register starlette-admin views
+    admin = Admin(
+        engine=engine,
+        title="Skate Map Admin",
+        auth_provider=SettingsAuthProvider()
+    )
+
+    register_admin_views(admin)
+    admin.mount_to(app)
 
     try:
         # Include routers for spots module

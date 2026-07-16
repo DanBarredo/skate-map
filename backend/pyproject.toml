@@ -13,10 +13,9 @@ dependencies = [
     "starlette-admin>=0.13.0",
     "pydantic-settings>=2.2.1",
     "alembic>=1.13.1",
-    # fastapi-users with both SQLModel/SQLAlchemy and JWT support built-in
-    "fastapi-users[sqlalchemy,jwt]>=13.0.0",
-    # Cryptography provider required by passlib/fastapi-users for password hashing
-    "bcrypt>=4.1.0",
+    "fastapi-users[sqlalchemy,jwt]>=13.0.0", # fastapi-users with both SQLModel/SQLAlchemy and JWT support built-in
+    "bcrypt>=4.1.0", # Cryptography provider required by passlib/fastapi-users for password hashing
+    "itsdangerous>=2.0.0",
 ]
 
 [tool-uv]
