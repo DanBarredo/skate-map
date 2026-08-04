@@ -49,6 +49,7 @@ def create_app() -> FastAPI:
     register_admin_views(admin)
     admin.mount_to(app)
 
+    # TODO: add API routers
     try:
         # Include routers for spots module
         from app.modules.spots.routes import router as spots_router
