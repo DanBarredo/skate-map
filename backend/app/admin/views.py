@@ -4,9 +4,13 @@ from app.modules.favourites.models import Favourite
 from app.modules.spots.models import Spot
 from app.modules.users.models import User
 
+class UserAdminView(ModelView):
+    """Admin view for User model, excluding password field"""
+    fields = ["id", "username", "email", "created_at", "updated_at", "favourites"]
+
 def register_admin_views(admin) -> None:
     admin.add_view(
-        ModelView(
+        UserAdminView(
             User, name="Users",
             icon="fa fa-users"
         )
