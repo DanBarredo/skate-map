@@ -9,6 +9,11 @@ from app.utils.api_response import ApiResponse
 router = APIRouter()
 
 
+"""TODO:
+- Add endpoints for user authentication (login, logout) + JWT logic
+- Add endpoints for password reset and change
+"""
+
 def get_user_service(session: Session = Depends(get_db)) -> UserService:
     return UserService(session=session)
 
