@@ -103,13 +103,14 @@ async def update_spot(
 @router.delete(
     "/{spot_id}",
     summary="Delete a skate spot",
-    response_model=ApiResponse[None],
+    response_model=ApiResponse,
     status_code=status.HTTP_200_OK,
 )
 async def delete_spot(
     spot_id: int,
     service: SpotService = Depends(get_spot_service),
 ):
+    deleted_id = spot_id
     deleted = service.delete_spot(spot_id=spot_id)
     if not deleted:
         raise HTTPException(
@@ -119,5 +120,5 @@ async def delete_spot(
     return ApiResponse(
         status_code=status.HTTP_200_OK,
         message="Spot deleted successfully.",
-        data=None,
+        data= {"id": deleted_id},
     )
